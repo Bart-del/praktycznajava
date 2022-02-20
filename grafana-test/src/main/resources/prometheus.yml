@@ -1,0 +1,22 @@
+global:
+  scrape_interval: 15s # Przeszukaj targety co 15 sekund
+
+# Konfiguracja do pobierania danych zawierająca dokładnie jeden punkt końcowy:
+# Dla samego Prometheusa.
+scrape_configs:
+  - job_name: 'prometheus'
+    scrape_interval: 5s
+
+    static_configs:
+      - targets: ['localhost:9090']
+
+  #Oraz dla naszej uruchomionej aplikacji
+  - job_name: 'spring-actuator'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 5s
+
+    static_configs:
+      - targets: ['192.168.0.104:8080']
+        labels:
+          group: "test"
+
