@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>maven-project-test</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <organization>
+        <name>Praktyczna Java</name>
+        <url>https://praktycznajava.pl</url>
+    </organization>
+
+    <modules>
+        <module>praktycznajava-core</module>
+        <module>praktycznajava-web</module>
+        <module>praktycznajava-util</module>
+    </modules>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www/apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>Korzystaj jak chcesz</comments>
+        </license>
+    </licenses>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
+
+    <reporting>
+        <outputDirectory>${maven.multiModuleProjectDirectory}/reports</outputDirectory>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>3.0.0-M6</version>
+            </plugin>
+        </plugins>
+    </reporting>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-report-plugin</artifactId>
+            <version>3.0.0-M6</version>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>praktycznajava-core</module>
+                <module>praktycznajava-util</module>
+                <module>praktycznajava-web</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>only_core</id>
+            <modules>
+                <module>praktycznajava-core</module>
+            </modules>
+        </profile>
+    </profiles>
+
+    <ciManagement>
+        <system>Some cool system</system>
+        <url>http://127.0.0.1:8080/cŚontinuum</url>
+        <notifiers>
+            <notifier>
+                <type>mail</type>
+                <sendOnError>true</sendOnError>
+                <sendOnFailure>true</sendOnFailure>
+                <sendOnSuccess>false</sendOnSuccess>
+                <sendOnWarning>false</sendOnWarning>
+            </notifier>
+        </notifiers>
+    </ciManagement>
+</project>
+
+
